@@ -49,6 +49,28 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('There was an error joining the waitlist. Please try again.');
     });
   });
+
+  // Countdown Timer Logic
+  const countdownElement = document.getElementById('countdown-timer');
+  // Set launch date to August 1st, 2024, 00:00:00 local time
+  const launchDate = new Date('2025-08-01T00:00:00');
+
+  const timerInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    if (distance < 0) {
+      clearInterval(timerInterval);
+      countdownElement.innerHTML = '<a href="assets/ObscureInstaller.msi" download>Get Beta</a>';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    countdownElement.innerHTML = `<span>${days}d ${hours}h ${minutes}m</span>`;
+  }, 1000);
 });
 
 // Spinner CSS (injects a style tag for the spinner)
