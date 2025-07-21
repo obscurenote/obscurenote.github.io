@@ -106,6 +106,23 @@ body {
   background: #6366f1;
   display: inline-block;
 }
+.feature-soon {
+  color: #9ca3af;
+}
+.soon-label {
+  color: #9ca3af;
+  font-size: 0.95em;
+  margin-left: 4px;
+}
+.feature-dot-empty {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #d1d5db;
+  display: inline-block;
+  box-sizing: border-box;
+}
 .os-progress-list {
   list-style: none;
   padding: 0;
@@ -127,6 +144,9 @@ body {
 .os-dot.finished {
   background: #22c55e;
 }
+.os-dot.inprogress {
+  background: #facc15;
+}
 .os-name {
   font-weight: 500;
   color: #1f2937;
@@ -146,6 +166,11 @@ body {
   background: #bbf7d0;
   color: #15803d;
   border-color: #bbf7d0;
+}
+.os-status.inprogress {
+  background: #fef9c3;
+  color: #b45309;
+  border-color: #fde68a;
 }
 
 .waitlist-container {
@@ -207,6 +232,7 @@ body {
 .avatars {
   display: flex;
   margin-right: 8px;
+  position: relative;
 }
 .avatar {
   width: 32px;
@@ -222,6 +248,11 @@ body {
   background: #000;
   color: #fff;
   z-index: 10;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+}
+.avatars .avatar:not(:first-child) {
+  margin-left: -12px;
+  z-index: auto;
 }
 .avatar-main { background: #000; color: #fff; z-index: 10; }
 .avatar-gray-300 { background: #d1d5db; z-index: 9; }

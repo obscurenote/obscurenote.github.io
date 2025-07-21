@@ -26,22 +26,25 @@
       </section>
       <section>
         <h2 class="section-title">What is Obscure?</h2>
-        <p class="section-desc">Obscure is a minimal, privacy-first note-taking app. Your notes are stored locally, never sent to a server, and there’s zero tracking. Enjoy instant search, tagging, markdown support, and a beautiful distraction-free UI.</p>
+        <p class="section-desc">Obscure is your private space for notes and ideas—simple, fast, and truly yours. Everything you write stays on your device, never sent to the cloud or tracked. Enjoy a clean, distraction-free interface, instant search, and powerful editing tools, all designed to help you focus on what matters most: your thoughts.</p>
       </section>
       <section>
         <h2 class="section-title">Features</h2>
         <ul class="features-list">
           <li><span class="feature-dot"></span>Local-only storage, zero tracking</li>
-          <li><span class="feature-dot"></span>Instant search and tagging</li>
-          <li><span class="feature-dot"></span>Rich text and markdown support</li>
-          <li><span class="feature-dot"></span>Dark mode and custom themes</li>
-          <li><span class="feature-dot"></span>Lightning fast, minimal UI</li>
+          <li><span class="feature-dot"></span>AES-256 encrypted notes</li>
+          <li><span class="feature-dot"></span>Instant search</li>
+          <li><span class="feature-dot"></span>Lightning fast minimal UI</li>
+          <li><span class="feature-dot"></span>Rich text editing</li>
+          <li class="feature-soon"><span class="feature-dot-empty"></span>Markdown support <span class="soon-label">(planned)</span></li>
+          <li class="feature-soon"><span class="feature-dot-empty"></span>LaTeX support <span class="soon-label">(planned)</span></li>
+          <li class="feature-soon"><span class="feature-dot-empty"></span>Tagging & organization <span class="soon-label">(planned)</span></li>
         </ul>
       </section>
       <section>
         <h2 class="section-title">OS Progress</h2>
         <ul class="os-progress-list">
-          <li><span class="os-dot finished"></span><span class="os-name">Windows</span><span class="os-status finished">Finished</span></li>
+          <li><span class="os-dot inprogress"></span><span class="os-name">Windows</span><span class="os-status inprogress">In progress</span></li>
           <li><span class="os-dot"></span><span class="os-name">Mac</span><span class="os-status">Not started</span></li>
           <li><span class="os-dot"></span><span class="os-name">Linux</span><span class="os-status">Not started</span></li>
         </ul>
@@ -52,6 +55,7 @@
         <input type="email" id="waitlist-email" required placeholder="john.doe@gmail.com" class="waitlist-input" />
         <button type="submit" id="waitlist-submit" class="waitlist-btn">Join wait list</button>
       </form>
+      <div id="waitlist-success" style="display:none; color:green; margin-top:8px;">Thank you for joining the waitlist!</div>
       <div class="avatars-launch">
         <div class="avatars">
           <span class="avatar avatar-main">+25</span>
@@ -63,6 +67,6 @@
         <span class="launch-label">Be Part of the Launch!</span>
       </div>
     </div>
-    <script src="./src/index.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>

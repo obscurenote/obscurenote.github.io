@@ -2,17 +2,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('waitlist-form');
   const emailInput = document.getElementById('waitlist-email');
   const submitBtn = document.getElementById('waitlist-submit');
+  const successMsg = document.getElementById('waitlist-success');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<span class="spinner"></span>';
-    setTimeout(function () {
+    const email = emailInput.value;
+    // Google Forms details
+    const formData = new FormData();
+    formData.append('entry.699321639', email);
+
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLScoowyrmXfBIgUvyichkogEeaMtfIX-vXHOduEXtEqyysqP3g/formResponse', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).then(() => {
+      form.reset();
       submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      emailInput.value = '';
-    }, 1500);
+      successMsg.style.display = 'block';
+      setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+    });
   });
 });
 
