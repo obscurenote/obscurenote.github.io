@@ -4,23 +4,49 @@ document.addEventListener('DOMContentLoaded', function () {
   const submitBtn = document.getElementById('waitlist-submit');
   const successMsg = document.getElementById('waitlist-success');
 
+  function isValidEmail(email) {
+    // Simple email regex validation
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Check localStorage for joined state
+  if (localStorage.getItem('waitlistJoined') === 'true') {
+    submitBtn.textContent = 'Joined';
+    submitBtn.disabled = true;
+    emailInput.disabled = true;
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!isValidEmail(email)) {
+      alert('Please enter a valid email address.');
+      emailInput.focus();
+      return;
+    }
     submitBtn.disabled = true;
-    const email = emailInput.value;
-    // Google Forms details
-    const formData = new FormData();
-    formData.append('entry.699321639', email);
-
-    fetch('https://docs.google.com/forms/d/e/1FAIpQLScoowyrmXfBIgUvyichkogEeaMtfIX-vXHOduEXtEqyysqP3g/formResponse', {
+    const originalBtnHTML = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="spinner"></span>';
+    // Send to Google Apps Script endpoint
+    fetch('https://script.google.com/macros/s/AKfycbxiu6nXdJ-1VBUag37ITYQ-3wEIvfhps2MB-dAhhwf2D8g4yGim_RUBNExcCPz01SHzuw/exec', {
       method: 'POST',
-      mode: 'no-cors',
-      body: formData
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `email=${encodeURIComponent(email)}`
     }).then(() => {
       form.reset();
-      submitBtn.disabled = false;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joined';
+      emailInput.disabled = true;
+      localStorage.setItem('waitlistJoined', 'true');
+      submitBtn.innerHTML = 'Joined';
       successMsg.style.display = 'block';
       setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+    }).catch(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHTML;
+      alert('There was an error joining the waitlist. Please try again.');
     });
   });
 });

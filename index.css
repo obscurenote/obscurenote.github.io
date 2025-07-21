@@ -273,5 +273,39 @@ body {
   .section-title { font-size: 1.125rem; }
   .waitlist-form { max-width: 100%; }
 }
+@media (max-width: 600px) {
+  body {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .main-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .waitlist-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .waitlist-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .waitlist-input, .waitlist-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 /* Fira Code for code elements */
 code, pre { font-family: 'Fira Code', 'Space Grotesk', monospace; }
+
+.waitlist-input:disabled,
+.waitlist-btn:disabled {
+  cursor: not-allowed !important;
+}
+
+.waitlist-input:disabled:hover,
+.waitlist-btn:disabled:hover {
+  cursor: not-allowed !important;
+}
